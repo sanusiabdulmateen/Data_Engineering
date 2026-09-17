@@ -1,0 +1,63 @@
+Table Branches{
+  branch_id int [pk, increment]
+  name varchar(100) [not null, unique]
+  location varchar(50)
+  created_at timestamp [default: 'now()']
+}
+
+Table Trainers{
+  trainer_id int [pk, increment]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  email varchar(100) [not null, unique]
+  phone_number varchar(20)
+  date_of_birth date
+  hire_date date [default: 'now()']
+  salary decimal(10, 2)
+  branch_id int [not null, ref: > Branches.branch_id]
+  created_at timestamp [default: 'now()']
+}
+
+Table Members{
+  member_id int [pk, increment]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  email varchar(100) [not null, unique]
+  phone_number varchar(20)
+  date_of_birth date
+  enrollment_date date [default: 'now()']
+  branch_id int [not null, ref: > Branches.branch_id]
+  is_active boolean [default: true]
+  created_at timestamp [default: 'now()']
+}
+
+Table ProgramTypes{
+  program_id int [pk, increment]
+  name varchar(50)
+  description text 
+  created_at timestamp [default: 'now()']
+}
+
+Table Classes{
+  class_id int [pk, increment]
+  name varchar(50)
+  scheduled_date date [not null]
+  start_time time [not null]
+  capacity int [default: '20'] 
+  program_id int [not null, ref: > ProgramTypes.program_id]
+  branch_id int [not null, ref: > Branches.branch_id]
+  trainer_id int [not null, ref: > Trainers.trainer_id]
+  created_at timestamp [default: 'now()']
+}
+
+Table Bookings{
+  booking_id int [pk, increment]
+  member_id int [not null, ref: > Members.member_id]
+  class_id int [not null, ref: > Classes.class_id]
+  booking_date date [default: 'now()']
+  created_at timestamp [default: 'now()']
+
+  indexes {
+    (member_id, class_id) [pk, unique]
+  }
+}
