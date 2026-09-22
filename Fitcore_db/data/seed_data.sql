@@ -54,3 +54,22 @@ INSERT INTO bookings (booking_id, member_id, class_id, booking_date) VALUES
 (13, 8, 9, '2024-05-06'),
 (14, 8, 10, '2024-05-06'),
 (15, 2, 10, '2024-05-07');
+
+INSERT INTO membership_plans (name, price, duration_months) VALUES
+('Monthly Standard', 49.99, 1),
+('Monthly Premium', 79.99, 1),
+('Annual VIP', 699.99, 12),
+('Student Monthly', 29.99, 1);
+
+INSERT INTO payment (member_id, plan_id, amount, payment_method, status, payment_date) VALUES
+(1, 1, 49.99, 'Credit Card', 'Paid', '2026-09-01 08:30:00'),
+(2, 2, 79.99, 'Credit Card', 'Paid', '2026-09-02 10:15:00'),
+(3, 3, 699.99, 'Bank Transfer', 'Paid', '2026-09-05 14:00:00'),
+(4, 4, 29.99, 'Debit Card', 'Failed', '2026-09-10 09:45:00'),
+(4, 4, 29.99, 'Credit Card', 'Paid', '2026-09-10 10:00:00');
+
+INSERT INTO waitlist (member_id, class_id, status, joined_at) VALUES
+(3, 1, 'Waiting', '2026-09-20 09:12:00'),
+(4, 1, 'Waiting', '2026-09-20 11:45:00'),
+(1, 2, 'Promoted', '2026-09-18 14:00:00'),
+(2, 3, 'Cancelled', '2026-09-19 16:30:00');

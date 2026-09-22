@@ -4,7 +4,6 @@ CREATE TABLE waitlist(
   member_id INTEGER NOT NULL REFERENCES members(member_id),
   joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status VARCHAR(20) DEFAULT 'Waiting',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP   
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT unique_member_class UNIQUE (member_id, class_id)
 );
